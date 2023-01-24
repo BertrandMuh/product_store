@@ -11,7 +11,7 @@ body {
 
 #body {
     width: 100%;
-    max-width: 1000px;
+    max-width: 1200px;
 }
 
 #header {
@@ -37,6 +37,60 @@ body {
 
 #navbar>p {
     color: white;
-    font-size: 25px;
-    cursor: default;
+    font-size: 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+    padding: 5px 10px;
+}
+
+#main {
+    padding: 10px;
+}
+
+#title {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+#create-form,
+#create-form>div {
+    display: flex;
+    flex-direction: column;
+}
+
+#create-form {
+    max-width: 500px;
+    gap: 20px;
+}
+
+#create-form>div {
+    gap: 5px;
+}
+
+input,
+textarea,
+select {
+    font-size: 18px;
+    padding-left: 5px;
+    outline: none;
+}
+
+
+input,
+select,
+#create-btn {
+    height: 25px;
+}
+
+input:focus,
+select:focus,
+#create-btn:focus,
+textarea:focus {
+    box-shadow: 0 0 5px lightgray;
+    outline: none;
+}
+
+
+label {
+    font-size: 20px;
 }

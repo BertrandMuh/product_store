@@ -21,7 +21,18 @@ mongoose.connection.once('open', () => {
     console.log('mongo connected');
 })
 
+app.get('/get_products', async (req, res) => {
+    let response = await product.find({});
+    res.send(response)
+})
 
+app.post('/create_product', async (req, res) => {
+    let data = req.body;
+    console.log(data);
+    let response = await product.create(data);
+    console.log(response);
+    res.send(response)
+})
 
 app.listen(5000, () => {
     console.log(`Server is Listening on 5000`)

@@ -5,7 +5,10 @@ const getElementById = (id) => {
 }
 
 const changePage = el => {
-    window.location.href = `./${el.target.id}`
+    let isParagraph = el.target.nodeName === 'P'
+    if (isParagraph) {
+        window.location.href = `./${el.target.id}`
+    }
 }
 
 const navbar = getElementById('navbar')
