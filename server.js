@@ -28,9 +28,13 @@ app.get('/get_products', async (req, res) => {
 
 app.post('/create_product', async (req, res) => {
     let data = req.body;
-    console.log(data);
     let response = await product.create(data);
-    console.log(response);
+    res.send(response)
+})
+
+app.get('/get_specific_product/:product_id', async (req, res) => {
+    let dataId = req.params.product_id;
+    let response = await product.findById(dataId)
     res.send(response)
 })
 

@@ -7,7 +7,7 @@ const getElementById = (id) => {
 const changePage = el => {
     let isParagraph = el.target.nodeName === 'P'
     if (isParagraph) {
-        window.location.href = `./${el.target.id}`
+        window.location.href = `${el.target.id}`
     }
 }
 
