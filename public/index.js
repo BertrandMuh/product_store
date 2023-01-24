@@ -15,19 +15,31 @@ const changePage = el => {
     window.location.href = `./${el.target.id}`
 }
 
-const getProduct = async () => {
+const getAllProducts = async () => {
     let productContainer = getElementById('product-container');
     let response = await fetch('/get_products');
     let parseData = await response.json()
     parseData.forEach(el => {
-        let elementContainer = createElement('div')
+        let elementContainer = createElement('div');
+        elementContainer.id = el._id;
+
+        let priceAndDescriptionContainer = createElement('div')
         let image = createElement('img');
-        let description = createElement('caption');
+        let description = createElement('p');
         let price = createElement('p')
+        image.src = el.imageUrl;
+        description.textContent = el.description;
+        price.textContent = '$' + el.price;
+        description.id = 'product-description';
+        price.id = 'price';
+        priceAndDescriptionContainer.appendChild(price);
+        priceAndDescriptionContainer.appendChild(description);
+        elementContainer.appendChild(image);
+        elementContainer.appendChild(priceAndDescriptionContainer)
+        productContainer.appendChild(elementContainer)
     })
-    console.log(parseData);
 }
-getProduct()
+getAllProducts()
 
 // 
 const navbar = getElementById('navbar')
