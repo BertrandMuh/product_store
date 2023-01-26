@@ -32,6 +32,13 @@ app.post('/create_product', async (req, res) => {
     res.send(response)
 })
 
+app.delete('/delete_product/', async (req, res) => {
+    let item = { _id: req.query.product_id }
+    console.log(product);
+    let response = await product.deleteOne(item)
+    res.send(response)
+})
+
 app.get('/get_specific_product/:product_id', async (req, res) => {
     let dataId = req.params.product_id;
     let response = await product.findById(dataId)
