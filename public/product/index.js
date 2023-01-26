@@ -21,11 +21,6 @@ const params = new Proxy(new URLSearchParams(window.location.search), {
     get: (searchParams, prop) => searchParams.get(prop),
 });
 
-
-if (window.location.href == 'http://localhost:5000/product/') {
-
-}
-
 const getSpecificProductByProductId = async () => {
     // convert the page url to an object
 
@@ -45,18 +40,23 @@ const getSpecificProductByProductId = async () => {
     let elementContainer = createElement('div');
     elementContainer.data = product._id
 
-    let priceAndDescriptionContainer = createElement('div')
+    let priceAndDescriptionContainer = createElement('div');
+    let buttonContainer = createElement('div')
     let name = createElement('p')
     let image = createElement('img');
     let description = createElement('p');
-    let price = createElement('p')
-    let deleteButton = createElement('button')
+    let price = createElement('p');
+    let category = createElement('p');
+    let deleteButton = createElement('button');
+    let editButton = createElement('button');
 
     name.innerHTML = product.name;
     image.src = product.imageUrl;
     description.textContent = product.description;
     price.textContent = '$' + product.price;
+    category.innerHTML = product.category;
     deleteButton.textContent = 'DELETE'
+    editButton.textContent = 'EDIT'
 
     name.setAttribute('class', 'product-name');
     name.data = product._id
@@ -68,18 +68,31 @@ const getSpecificProductByProductId = async () => {
     description.setAttribute('class', 'description')
 
     price.data = product._id;
-    price.setAttribute('class', 'price')
+    price.setAttribute('class', 'price');
+    category.setAttribute('class', 'category')
 
     deleteButton.data = product._id
     deleteButton.setAttribute('type', 'button');
-    deleteButton.setAttribute('id', 'delete-btn'),
+    deleteButton.setAttribute('id', 'delete-btn');
 
-        priceAndDescriptionContainer.appendChild(price);
+    editButton.setAttribute('type', 'button');
+    editButton.setAttribute('id', 'edit-btn');
+
+    buttonContainer.setAttribute('class', 'btn-container')
+
+
+    priceAndDescriptionContainer.appendChild(price);
+    priceAndDescriptionContainer.appendChild(category)
     priceAndDescriptionContainer.appendChild(description);
+
+    buttonContainer.appendChild(editButton);
+    buttonContainer.appendChild(deleteButton);
+
     elementContainer.appendChild(name)
     elementContainer.appendChild(image);
     elementContainer.appendChild(priceAndDescriptionContainer)
-    elementContainer.appendChild(deleteButton)
+    elementContainer.appendChild(buttonContainer);
+
     productContainer.appendChild(elementContainer)
 }
 
@@ -94,15 +107,6 @@ const deleteProduct = async () => {
     }
 
 }
-let deleteButton
-setInterval(() => {
-    deleteButton = getElementById('delete-btn');
-    if (deleteButton !== null) {
-        deleteButton.addEventListener('click', deleteProduct);
-    }
-}, 1000);
-
-
 
 // convert the page url to an object
 const url = new URL(window.location.href);
@@ -117,10 +121,10 @@ if (hasProductId) {
 if (params.alert == 'yes') {
     let productContainer = getElementById('product-detail');
     while (productContainer.firstChild) {
-        productContainer.remove(productContainer.firstChild)
+        productContainer.removeChild(productContainer.firstChild)
     }
     let alert = createElement('p');
-    alert.setAttribute('id', 'alert');
+    alert.setAttribute('class', 'delete alert');
     alert.textContent = 'The product was deleted successfully!'
 
     productContainer.appendChild(alert)
@@ -129,6 +133,33 @@ if (params.alert == 'yes') {
     }, 2000);
 }
 
-
 const navbar = getElementById('navbar')
 navbar.addEventListener('click', changePage)
+
+const editButtonClicked = () => {
+    let editContainer = getElementById('edit-container')
+    editContainer.classList.remove('hidden');
+}
+
+
+setInterval(() => {
+    let deleteButton = getElementById('delete-btn');
+    let editButton = getElementById('edit-btn');
+    let closeButton = getElementById('close-btn')
+    let editContainer = getElementById('edit-container')
+    if (deleteButton !== null) {
+        deleteButton.addEventListener('click', deleteProduct);
+    }
+    if (editButton !== null) {
+        editButton.addEventListener('click', editButtonClicked)
+    }
+    if (editContainer.classList.contains('hidden') === false) {
+        closeButton.addEventListener('click', () => {
+            getElementById('update-form').reset()
+            editContainer.classList.add('hidden')
+        })
+    }
+}, 1000);
+
+
+
