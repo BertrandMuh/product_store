@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="edit.css">
+    <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="index.js" defer></script>
     <title>Organic Food SuperMarket</title>
@@ -16,12 +18,11 @@
         <header id="header">
             <h1 id="page-title">Product Store</h1>
             <div id="search-container">
-                <input type="saerch" id="name-search" placeholder="Enter product name">
+                <input type="search" id="name-search" placeholder="Enter product name">
                 <button id="search-btn" type="button">search</button>
             </div>
             <nav id="navbar">
                 <p id="../">home</p>
-                <p id="../edit_product">edit</p>
                 <p id="../create_product">create</p>
             </nav>
         </header>
@@ -32,9 +33,9 @@
                     <h2 id="edit-title">Edit product</h2>
                     <i id="close-btn" class="fa fa-close"></i>
                 </div>
-                <form action="" id="update-form">
+                <form id="update-form">
                     <div>
-                        <label for="name">Name<sup>*</sup></label>
+                        <label for="name">Name</label>
                         <input id="name" type="text" placeholder="name" autocomplete="off">
                     </div>
                     <div>
@@ -63,12 +64,11 @@
                     </div>
                     <div>
                         <label for="description">Product description</label>
-                        <textarea name="description" id="description" cols="20" rows="5"
+                        <textarea name="description" id="description" cols="20" rows="3"
                             placeholder="Enter the product description"></textarea>
                     </div>
                     <div class="btn-container">
                         <input id="update-btn" type="button" value="UPDATE">
-
                     </div>
                 </form>
             </div>

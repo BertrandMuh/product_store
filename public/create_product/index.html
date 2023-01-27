@@ -14,10 +14,6 @@
     <div id="body">
         <header id="header">
             <h1 id="page-title">Product Store</h1>
-            <div id="search-container">
-                <input type="saerch" id="name-search" placeholder="Enter product name">
-                <button id="search-btn" type="button">search</button>
-            </div>
             <nav id="navbar">
                 <p id="../">home</p>
                 <p id="../product">product</p>
@@ -25,26 +21,26 @@
             </nav>
         </header>
         <div id="main">
-            <h2 id="title">Create element</h2>
+            <h2 id="title">Create product</h2>
             <form id="create-form">
                 <div>
                     <label for="name">Name<sup>*</sup></label>
                     <input id="name" type="text" placeholder="name" autocomplete="off">
                 </div>
                 <div>
-                    <label for="img">Product image</label>
+                    <label for="img">Product image<sup>*</sup></label>
                     <input id="img-url" type="url" placeholder="image url here" autocomplete="off">
                 </div>
                 <div>
-                    <label for="price">Price</label>
+                    <label for="price">Price<sup>*</sup></label>
                     <input id='price' type="number" step="0.01" placeholder="price" autocomplete="off">
                 </div>
                 <div>
-                    <label for="inventory">Inventory</label>
-                    <input id='inventory' type="number" step='0.01' placeholder="inventory" autocomplete="off">
+                    <label for="inventory">Inventory<sup>*</sup></label>
+                    <input id='inventory' type="number" step='1' placeholder="inventory" autocomplete="off">
                 </div>
                 <div>
-                    <label for="category">Select product category</label>
+                    <label for="category">Select product category<sup>*</sup></label>
                     <select name="category" id="category">
                         <option value="">Pick one</option>
                         <option value="fruit">Fruit</option>

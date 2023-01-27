@@ -1,0 +1,99 @@
+#edit-container {
+    box-shadow: 0 0 2px lightgray;
+    width: 50%;
+    background: rgba(251, 224, 173, 0.295);
+    border-radius: 5px;
+}
+
+#edit-container>form,
+#edit-title {
+    margin: 10px;
+}
+
+#title {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+#update-form,
+#update-form>div,
+#edit-header,
+#close-btn,
+#update-btn {
+    display: flex;
+}
+
+#update-form,
+#update-form>div {
+    flex-direction: column;
+}
+
+#update-form {
+    max-width: 500px;
+    gap: 15px;
+}
+
+#update-form>div {
+    gap: 5px;
+}
+
+input,
+textarea,
+select {
+    font-size: 18px;
+    padding-left: 5px;
+    outline: none;
+}
+
+#update-btn {
+    justify-content: center;
+    align-items: center;
+    padding: 1%;
+    height: max-content;
+    background: green;
+    color: white;
+    cursor: pointer;
+}
+
+input,
+select {
+    height: 25px;
+
+}
+
+input:focus,
+select:focus,
+#update-btn:focus,
+textarea:focus {
+    box-shadow: 0 0 2px lightgray;
+    outline: none;
+}
+
+label {
+    font-size: 20px;
+}
+
+#edit-header,
+#close-btn {
+    align-items: center;
+}
+
+#edit-header {
+    justify-content: space-between;
+}
+
+#close-btn {
+    justify-content: center;
+    width: max-content;
+    font-size: 30px;
+    cursor: pointer;
+    padding: 5px;
+    color: white;
+    background: red;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.hidden {
+    display: none;
+}

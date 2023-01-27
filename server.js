@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose');
+const { findOneAndUpdate } = require('./models/product');
 require('dotenv').config()
 const product = require('./models/product')
 
@@ -34,9 +35,14 @@ app.post('/create_product', async (req, res) => {
 
 app.delete('/delete_product/', async (req, res) => {
     let item = { _id: req.query.product_id }
-    console.log(product);
     let response = await product.deleteOne(item)
     res.send(response)
+})
+
+app.put('/update_product', async (req, res) => {
+    let response = await product.findOneAndUpdate({ _id: req.query.product_id }, req.body, { new: true });
+    res.send(response);
+
 })
 
 app.get('/get_specific_product/:product_id', async (req, res) => {

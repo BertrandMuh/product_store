@@ -41,8 +41,9 @@ const getSpecificProductByProductId = async () => {
     elementContainer.data = product._id
 
     let priceAndDescriptionContainer = createElement('div');
-    let buttonContainer = createElement('div')
-    let name = createElement('p')
+    let buttonContainer = createElement('div');
+    let imageContainer = createElement('div');
+    let name = createElement('p');
     let image = createElement('img');
     let description = createElement('p');
     let price = createElement('p');
@@ -63,6 +64,8 @@ const getSpecificProductByProductId = async () => {
 
     image.setAttribute('class', 'img')
     image.data = product._id
+
+    imageContainer.setAttribute('id', 'img-container')
 
     description.data = product._id
     description.setAttribute('class', 'description')
@@ -88,8 +91,10 @@ const getSpecificProductByProductId = async () => {
     buttonContainer.appendChild(editButton);
     buttonContainer.appendChild(deleteButton);
 
+    imageContainer.appendChild(image)
+
     elementContainer.appendChild(name)
-    elementContainer.appendChild(image);
+    elementContainer.appendChild(imageContainer);
     elementContainer.appendChild(priceAndDescriptionContainer)
     elementContainer.appendChild(buttonContainer);
 
@@ -163,3 +168,36 @@ setInterval(() => {
 
 
 
+const updateProduct = async () => {
+    let body = {
+        name: getElementById('name').value,
+        imageUrl: getElementById('img-url').value,
+        price: getElementById('price').value,
+        inventory: getElementById('inventory').value,
+        category: getElementById('category').value,
+        description: getElementById('description').value,
+    }
+
+    // Delete empty keys
+    Object.keys(body).forEach(key => {
+        if (body[key] === '') {
+            delete body[key];
+        }
+    });
+    if (Object.keys(body).length > 0) {
+        let response = await fetch(`/update_product/?product_id=${params.product_id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        })
+        if (response.status == 200) {
+
+            window.location.href = window.location.search
+        }
+    }
+}
+
+getElementById('update-btn').addEventListener('click',
+    updateProduct)
