@@ -60,6 +60,6 @@
     margin-right: 20px;
 }
 
-p:first-child {
+#navbar>p:first-child {
     margin-left: 3%;
 }

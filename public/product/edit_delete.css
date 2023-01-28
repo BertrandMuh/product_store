@@ -96,6 +96,7 @@
 
 #y-or-n {
     cursor: default;
+    margin-bottom: 5px;
 }
 
 #y-or-n>* {

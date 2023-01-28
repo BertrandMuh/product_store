@@ -128,6 +128,11 @@ let hasProductId = searchParams3.has('product_id');
 if (hasProductId) {
     getSpecificProductByProductId()
 }
+else {
+    while (getElementById('container').firstChild) {
+        getElementById('container').removeChild(getElementById('container').firstChild)
+    }
+}
 
 if (params.alert == 'yes') {
     let productContainer = getElementById('product-detail');
@@ -168,6 +173,11 @@ setInterval(() => {
             getElementById('edit-container').classList.add('hidden')
         })
     }
+
+    // buy the product
+    getElementById('buy-btn').addEventListener('click', () => {
+
+    })
 }, 1000);
 
 const updateProduct = async () => {
@@ -230,3 +240,6 @@ getElementById('close-btn').addEventListener('click', () => {
     getElementById('update-form').reset()
     getElementById('edit-container').classList.add('hidden')
 })
+
+//Update product
+getElementById('update-btn').addEventListener('click', updateProduct);

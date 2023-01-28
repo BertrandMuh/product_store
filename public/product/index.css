@@ -51,6 +51,7 @@ body {
 #product-detail {
     box-shadow: 0 0 5px lightgray;
     width: 50%;
+    height: max-content;
     max-width: 400px;
     min-width: 350px;
     padding: 10px;
@@ -85,10 +86,30 @@ body {
 }
 
 .price {
-    font-size: 140%;
+    font-size: 25px;
+    margin: 0;
+    padding: 0;
 }
 
 .category {
     text-transform: capitalize;
     font-style: italic;
+}
+
+#product-inventory {
+    text-align: center;
+    font-size: 17px;
+    margin-top: 20px;
+}
+
+#buy-btn {
+    margin: 20px;
+    font-size: 20px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 0;
+    background: rgb(2, 164, 2);
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
 }
