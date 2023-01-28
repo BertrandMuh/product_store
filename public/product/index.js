@@ -23,11 +23,8 @@ const params = new Proxy(new URLSearchParams(window.location.search), {
 
 const getSpecificProductByProductId = async () => {
     // convert the page url to an object
-
     // Get the value of "some_key" in eg "https://example.com/?some_key=some_value"
-
     let productId = params.product_id;
-
     // const url = new URL(window.location.href);
     // // get the product id
     // const searchParams3 = new URLSearchParams(url.search);
@@ -39,28 +36,34 @@ const getSpecificProductByProductId = async () => {
 
     let elementContainer = createElement('div');
     elementContainer.data = product._id
-
     let priceAndDescriptionContainer = createElement('div');
-    let buttonContainer = createElement('div');
     let imageContainer = createElement('div');
+    let productNameAndActionContainer = createElement('div')
     let name = createElement('p');
+    let threeDots = createElement('i')
     let image = createElement('img');
     let description = createElement('p');
     let price = createElement('p');
     let category = createElement('p');
-    let deleteButton = createElement('button');
-    let editButton = createElement('button');
+    let inventory = createElement('p');
+    let buyButton = createElement('button');
+
 
     name.innerHTML = product.name;
     image.src = product.imageUrl;
     description.textContent = product.description;
     price.textContent = '$' + product.price;
     category.innerHTML = product.category;
-    deleteButton.textContent = 'DELETE'
-    editButton.textContent = 'EDIT'
+    buyButton.textContent = 'BUY'
+    inventory.textContent = product.inventory + ' remaining'
+
+    productNameAndActionContainer.setAttribute('id', 'name-action');
 
     name.setAttribute('class', 'product-name');
-    name.data = product._id
+    name.data = product._id;
+
+    threeDots.setAttribute('class', 'fa fa-ellipsis-v');
+    threeDots.setAttribute('id', 'action-btn')
 
     image.setAttribute('class', 'img')
     image.data = product._id
@@ -72,34 +75,37 @@ const getSpecificProductByProductId = async () => {
 
     price.data = product._id;
     price.setAttribute('class', 'price');
-    category.setAttribute('class', 'category')
-
-    deleteButton.data = product._id
-    deleteButton.setAttribute('type', 'button');
-    deleteButton.setAttribute('id', 'delete-btn');
-
-    editButton.setAttribute('type', 'button');
-    editButton.setAttribute('id', 'edit-btn');
-
-    buttonContainer.setAttribute('class', 'btn-container')
-
+    category.setAttribute('class', 'category');
+    buyButton.setAttribute('id', 'buy-btn');
+    inventory.setAttribute('id', 'product-inventory')
 
     priceAndDescriptionContainer.appendChild(price);
     priceAndDescriptionContainer.appendChild(category)
     priceAndDescriptionContainer.appendChild(description);
-
-    buttonContainer.appendChild(editButton);
-    buttonContainer.appendChild(deleteButton);
-
+    productNameAndActionContainer.appendChild(name);
+    productNameAndActionContainer.appendChild(threeDots)
     imageContainer.appendChild(image)
 
-    elementContainer.appendChild(name)
+    elementContainer.appendChild(productNameAndActionContainer)
     elementContainer.appendChild(imageContainer);
     elementContainer.appendChild(priceAndDescriptionContainer)
-    elementContainer.appendChild(buttonContainer);
+    elementContainer.appendChild(inventory)
 
-    productContainer.appendChild(elementContainer)
+    productContainer.appendChild(elementContainer);
+    productContainer.appendChild(buyButton)
 }
+
+const searchProducts = async () => {
+    let nameSearch = getElementById('name-search').value;
+    let response = await fetch(`/get_products_with_a_specific_word_in_it/${nameSearch}`);
+    let parseData = await response.json();
+    console.log(parseData[0]);
+    if (parseData > 0) {
+        getElementById('product-name').textContent = parseData.name
+    }
+}
+let searchButton = getElementById('search-btn');
+searchButton.addEventListener('click', searchProducts)
 
 const deleteProduct = async () => {
     let productId = params.product_id;
@@ -125,6 +131,7 @@ if (hasProductId) {
 
 if (params.alert == 'yes') {
     let productContainer = getElementById('product-detail');
+    getElementById('body').removeChild(getElementById('container'))
     while (productContainer.firstChild) {
         productContainer.removeChild(productContainer.firstChild)
     }
@@ -132,7 +139,7 @@ if (params.alert == 'yes') {
     alert.setAttribute('class', 'delete alert');
     alert.textContent = 'The product was deleted successfully!'
 
-    productContainer.appendChild(alert)
+    getElementById('body').appendChild(alert)
     setTimeout(() => {
         window.location.href = '../'
     }, 2000);
@@ -141,32 +148,27 @@ if (params.alert == 'yes') {
 const navbar = getElementById('navbar')
 navbar.addEventListener('click', changePage)
 
-const editButtonClicked = () => {
+const displayEditContainer = () => {
     let editContainer = getElementById('edit-container')
     editContainer.classList.remove('hidden');
+    let actionContainer = getElementById('action');
+    actionContainer.classList.replace('show', 'hidden');
+    getElementById('delete-prompt').classList.replace('show', 'hidden')
 }
 
-
 setInterval(() => {
-    let deleteButton = getElementById('delete-btn');
-    let editButton = getElementById('edit-btn');
-    let closeButton = getElementById('close-btn')
-    let editContainer = getElementById('edit-container')
-    if (deleteButton !== null) {
-        deleteButton.addEventListener('click', deleteProduct);
-    }
-    if (editButton !== null) {
-        editButton.addEventListener('click', editButtonClicked)
-    }
-    if (editContainer.classList.contains('hidden') === false) {
-        closeButton.addEventListener('click', () => {
-            getElementById('update-form').reset()
-            editContainer.classList.add('hidden')
+    let editAndDeleteContainer = getElementById('action')
+    let actionButton = getElementById('action-btn');
+    //container with edit and delete button
+    let actionContainer = getElementById('action')
+    if (actionContainer.classList.contains('hidden') === true && actionButton !== null) {
+        actionButton.addEventListener('click', () => {
+            // close the container with the edit and delete button
+            editAndDeleteContainer.classList.replace('hidden', 'show');
+            getElementById('edit-container').classList.add('hidden')
         })
     }
 }, 1000);
-
-
 
 const updateProduct = async () => {
     let body = {
@@ -193,11 +195,38 @@ const updateProduct = async () => {
             body: JSON.stringify(body)
         })
         if (response.status == 200) {
-
             window.location.href = window.location.search
         }
     }
 }
 
+// close the container with the edit and delete button
+getElementById('action-close').addEventListener('click', () => {
+    getElementById('action').classList.replace('show', 'hidden');
+    getElementById('delete-prompt').classList.replace('show', 'hidden')
+});
+
+getElementById('edit-btn').addEventListener('click', displayEditContainer)
+
+//display the message to confirm deletion
+getElementById('delete-btn').addEventListener('click', () => {
+    getElementById('delete-prompt').classList.replace('hidden', 'show');
+
+});
+
+// hide the message to cinfirm deletion
+getElementById('n').addEventListener('click', () => {
+    getElementById('delete-prompt').classList.replace('show', 'hidden');
+})
+
+//delete product after confirmation and hide the confirmation container
+getElementById('y').addEventListener('click', deleteProduct);
 getElementById('update-btn').addEventListener('click',
-    updateProduct)
+    updateProduct);
+
+
+//close the edit container
+getElementById('close-btn').addEventListener('click', () => {
+    getElementById('update-form').reset()
+    getElementById('edit-container').classList.add('hidden')
+})

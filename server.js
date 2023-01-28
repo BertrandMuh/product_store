@@ -27,6 +27,7 @@ app.get('/get_products', async (req, res) => {
     res.send(response)
 })
 
+
 app.post('/create_product', async (req, res) => {
     let data = req.body;
     let response = await product.create(data);
@@ -48,6 +49,12 @@ app.put('/update_product', async (req, res) => {
 app.get('/get_specific_product/:product_id', async (req, res) => {
     let dataId = req.params.product_id;
     let response = await product.findById(dataId)
+    res.send(response)
+})
+
+app.get('/get_products_with_a_specific_word_in_it/:name', async (req, res) => {
+    let nameStr = req.params.name;
+    let response = await product.find({ name: nameStr })
     res.send(response)
 })
 

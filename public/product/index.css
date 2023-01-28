@@ -20,12 +20,18 @@ body {
 
 #body,
 .btn-container,
-.img #product-detail>div {
+.img,
+#product-detail>div {
     width: 100%;
+}
+
+.img {
+    height: 100%;
 }
 
 #img-container {
     width: 80%;
+    aspect-ratio: 1/1.005;
     margin: auto;
 }
 
@@ -38,29 +44,25 @@ body {
 }
 
 #container {
-    justify-content: space-around;
+    width: max-content;
+    margin: 2% 3.5%;
 }
 
 #product-detail {
-    margin-right: auto;
-    box-shadow: 0 0 2px lightgray;
-    width: 40%;
+    box-shadow: 0 0 5px lightgray;
+    width: 50%;
     max-width: 400px;
-    min-width: 300px;
-    height: max-content;
+    min-width: 350px;
     padding: 10px;
-    margin-left: 18px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-#product-detail>div {
-    max-width: 800px;
+    cursor: default;
     position: relative;
 }
+
 
 .product-name {
     text-transform: capitalize;
@@ -71,17 +73,6 @@ body {
     padding: 10px;
     font-size: 25px;
     text-align: center;
-}
-
-.delete {
-    background: pink;
-    color: red;
-}
-
-#container {
-    flex-wrap: wrap;
-    gap: 15px;
-    margin: 10px
 }
 
 .price,
@@ -100,19 +91,4 @@ body {
 .category {
     text-transform: capitalize;
     font-style: italic;
-}
-
-.btn-container {
-    position: relative;
-    gap: 20px;
-    margin: 10px auto;
-}
-
-.btn-container>* {
-    padding: 2% 2%;
-    border: 0;
-    color: black;
-    font-size: 100%;
-    background: lightgrey;
-    border-radius: 5px;
 }

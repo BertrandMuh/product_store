@@ -1,0 +1,114 @@
+.fa.fa-ellipsis-v {
+    font-size: 20px;
+    font-weight: lighter;
+    transform: scaleX(0.7);
+    position: absolute;
+    color: gray;
+    right: 0;
+    top: 3px;
+    opacity: 0.2;
+}
+
+.fa.fa-ellipsis-v:hover {
+    opacity: 0.7;
+    color: black
+}
+
+#name-action {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#action {
+    background: rgb(255, 235, 197);
+    height: max-content;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    width: max-content;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+#action-close {
+    cursor: pointer;
+    color: lightgray;
+    height: max-content;
+    margin: 5px;
+    font-size: 20px;
+}
+
+#action-close:hover {
+    color: black;
+}
+
+#edit-btn,
+#delete-btn {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    cursor: pointer;
+    padding: 2px 8px;
+    margin: 8px 5px;
+}
+
+#edit-btn:hover,
+#delete-btn:hover {
+    background: black;
+    color: white;
+}
+
+#edit-or-close-div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#delete-prompt {
+    background: pink;
+    color: red;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    cursor: default;
+}
+
+#delete-prompt:hover {
+    background: pink;
+    color: red
+}
+
+#delete-prompt>* {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    padding: 3px;
+    gap: 30px;
+    font-size: 18px;
+}
+
+#y-or-n {
+    cursor: default;
+}
+
+#y-or-n>* {
+    color: white;
+    padding: 3px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#y {
+    background: rgb(4, 166, 4);
+}
+
+#n {
+    background: red;
+}

@@ -1,6 +1,6 @@
 #edit-container {
     box-shadow: 0 0 2px lightgray;
-    width: 50%;
+    width: 100%;
     background: rgba(251, 224, 173, 0.295);
     border-radius: 5px;
 }
@@ -96,4 +96,8 @@ label {
 
 .hidden {
     display: none;
+}
+
+.show {
+    display: flex;
 }

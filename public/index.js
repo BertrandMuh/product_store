@@ -32,6 +32,7 @@ const getAllProducts = async () => {
         let image = createElement('img');
         let description = createElement('p');
         let price = createElement('p')
+        let imgContainer = createElement('div')
 
         name.innerHTML = el.name;
         image.src = el.imageUrl;
@@ -50,15 +51,26 @@ const getAllProducts = async () => {
         price.data = el._id;
         price.setAttribute('class', 'price')
 
+        imgContainer.setAttribute('class', 'img-container')
+
         priceAndDescriptionContainer.appendChild(price);
-        priceAndDescriptionContainer.appendChild(description);
         elementContainer.appendChild(name)
-        elementContainer.appendChild(image);
+        imgContainer.appendChild(image)
+        elementContainer.appendChild(imgContainer);
         elementContainer.appendChild(priceAndDescriptionContainer)
         productContainer.appendChild(elementContainer)
     })
 }
 getAllProducts()
+
+const searchProducts = async () => {
+    let nameSearch = getElementById('name-search').value;
+    let response = await fetch(`/get_products_with_a_specific_word_in_it/${nameSearch}`);
+    let parseData = await response.json();
+    console.log(parseData);
+}
+let searchButton = getElementById('search-btn');
+searchButton.addEventListener('click', searchProducts)
 
 const getProductDetail = async (el) => {
     let isElementConatiner = el.target.data !== undefined;
@@ -71,8 +83,6 @@ const getProductDetail = async (el) => {
 let productContainer = getElementById('product-container');
 productContainer.addEventListener('click', getProductDetail)
 
-// 
 const navbar = getElementById('navbar')
 
-// will activate here
 navbar.addEventListener('click', changePage)
