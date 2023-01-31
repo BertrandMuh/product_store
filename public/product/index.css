@@ -22,15 +22,16 @@
 
 #img-container {
     width: 80%;
-    aspect-ratio: 1/1.005;
+    height: 30vh;
+    max-height: 200px;
     margin: auto;
 }
 
 
 #body {
-    top: 10%;
-    padding-top: 10px;
-    position: relative;
+    top: 80px;
+    padding-top: 5px;
+    position: absolute;
     max-width: 1200px;
     margin: auto;
     background: white;
@@ -42,15 +43,27 @@
 
 #container {
     width: max-content;
+    flex-direction: column;
+    max-width: 100%;
     margin: 2% 3.5%;
+}
+
+#container>div {
+    display: flex;
+}
+
+#product-category {
+    margin-bottom: 10px;
+    font-size: 15px;
+    text-transform: capitalize;
 }
 
 #product-detail {
     box-shadow: 0 0 5px lightgray;
-    width: 50%;
+    width: 45%;
     height: max-content;
     max-width: 365px;
-    min-width: 85%;
+    min-width: 325px;
     padding: 10px;
     border-radius: 5px;
     display: flex;
@@ -109,4 +122,14 @@
     font-weight: bold;
     color: white;
     cursor: pointer;
+}
+
+img {
+    object-fit: contain;
+}
+
+@media(max-width:815px) {
+    #body {
+        top: 120px
+    }
 }

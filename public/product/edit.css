@@ -1,7 +1,7 @@
 #edit-container {
     box-shadow: 0 0 2px lightgray;
     width: 30vw;
-    min-width: 400px;
+    min-width: 350px;
     max-width: 600px;
     background: rgba(251, 224, 173, 0.295);
     border-radius: 5px;
@@ -103,4 +103,16 @@ label {
 
 .show {
     display: flex;
+}
+
+@media(max-width:750px) {
+    #container>div {
+        flex-direction: column;
+        margin-bottom: 110px;
+    }
+
+    #edit-container {
+        margin: 10px 0 20px;
+        width: 90vw;
+    }
 }

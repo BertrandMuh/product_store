@@ -12,13 +12,17 @@
     display: flex;
 }
 
+img {
+    object-fit: contain;
+}
+
 #product-container {
     min-width: 375px;
-
     flex-wrap: wrap;
     gap: 40px;
-    padding-top: 20px;
+
     padding-left: 10px;
+    padding-bottom: 20px;
 }
 
 #product-container>div {
@@ -53,7 +57,7 @@
 }
 
 #body {
-    top: 10%;
+    top: 100px;
     padding-top: 10px;
     position: absolute;
     left: 0;
@@ -151,7 +155,12 @@
     #product-container>div {
         max-width: 220px;
         min-width: 155px;
-        width: 42.5vw
+        width: 40vw;
+    }
+
+    #body,
+    #main {
+        margin-bottom: 150px;
     }
 
     .product-name {

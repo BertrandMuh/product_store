@@ -30,67 +30,70 @@
     </header>
     <div id="body">
         <div id="container">
-            <div id="product-detail">
-                <div id="action" class="hidden">
-                    <div id="edit-or-close-div">
-                        <p id="edit-btn">EDIT</p>
-                        <i id="action-close" class="fa fa-close"></i>
-                    </div>
-                    <p id="delete-btn">DELETE</p>
-                    <div id="delete-prompt" class="hidden">
-                        <p>Are you sure you want to delete this product?</p>
-                        <div id="y-or-n">
-                            <span id="y">YES</span>
-                            <span id="n">NO</span>
+            <p id="product-category"></p>
+            <div>
+                <div id="product-detail">
+                    <div id="action" class="hidden">
+                        <div id="edit-or-close-div">
+                            <p id="edit-btn">EDIT</p>
+                            <i id="action-close" class="fa fa-close"></i>
+                        </div>
+                        <p id="delete-btn">DELETE</p>
+                        <div id="delete-prompt" class="hidden">
+                            <p>Are you sure you want to delete this product?</p>
+                            <div id="y-or-n">
+                                <span id="y">YES</span>
+                                <span id="n">NO</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- edit container -->
-            <div id="edit-container" class="hidden">
-                <div id="edit-header">
-                    <h2 id="edit-title">Edit product</h2>
-                    <i id="close-btn" class="fa fa-close"></i>
+                <!-- edit container -->
+                <div id="edit-container" class="hidden">
+                    <div id="edit-header">
+                        <h2 id="edit-title">Edit product</h2>
+                        <i id="close-btn" class="fa fa-close"></i>
+                    </div>
+                    <form id="update-form">
+                        <div>
+                            <label for="name">Name</label>
+                            <input id="name" type="text" placeholder="name" autocomplete="off">
+                        </div>
+                        <div>
+                            <label for="img">Product image</label>
+                            <input id="img-url" type="url" placeholder="image url here" autocomplete="off">
+                        </div>
+                        <div>
+                            <label for="price">Price</label>
+                            <input id='price' type="number" step="0.01" placeholder="price" autocomplete="off">
+                        </div>
+                        <div>
+                            <label for="inventory">Inventory</label>
+                            <input id='inventory' type="number" step='0.01' placeholder="inventory" autocomplete="off">
+                        </div>
+                        <div>
+                            <label for="category">Select product category</label>
+                            <select name="category" id="category">
+                                <option value="">Pick one</option>
+                                <option value="fruit">Fruit</option>
+                                <option value="vegetable">Vegetable</option>
+                                <option value="meat">Meat</option>
+                                <option value="fish">Fish</option>
+                                <option value="electronic">Electronic</option>
+                                <option value="toy">Toy</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="description">Product description</label>
+                            <textarea name="description" id="description" cols="20" rows="3"
+                                placeholder="Enter the product description"></textarea>
+                        </div>
+                        <div class="btn-container">
+                            <input id="update-btn" type="button" value="UPDATE">
+                        </div>
+                    </form>
                 </div>
-                <form id="update-form">
-                    <div>
-                        <label for="name">Name</label>
-                        <input id="name" type="text" placeholder="name" autocomplete="off">
-                    </div>
-                    <div>
-                        <label for="img">Product image</label>
-                        <input id="img-url" type="url" placeholder="image url here" autocomplete="off">
-                    </div>
-                    <div>
-                        <label for="price">Price</label>
-                        <input id='price' type="number" step="0.01" placeholder="price" autocomplete="off">
-                    </div>
-                    <div>
-                        <label for="inventory">Inventory</label>
-                        <input id='inventory' type="number" step='0.01' placeholder="inventory" autocomplete="off">
-                    </div>
-                    <div>
-                        <label for="category">Select product category</label>
-                        <select name="category" id="category">
-                            <option value="">Pick one</option>
-                            <option value="fruit">Fruit</option>
-                            <option value="vegetable">Vegetable</option>
-                            <option value="meat">Meat</option>
-                            <option value="fish">Fish</option>
-                            <option value="electronic">Electronic</option>
-                            <option value="toy">Toy</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="description">Product description</label>
-                        <textarea name="description" id="description" cols="20" rows="3"
-                            placeholder="Enter the product description"></textarea>
-                    </div>
-                    <div class="btn-container">
-                        <input id="update-btn" type="button" value="UPDATE">
-                    </div>
-                </form>
             </div>
         </div>
     </div>

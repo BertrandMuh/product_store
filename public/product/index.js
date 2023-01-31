@@ -80,7 +80,7 @@ const getSpecificProductByProductId = async (id = params.product_id) => {
     inventory.setAttribute('id', 'product-inventory')
 
     priceAndDescriptionContainer.appendChild(price);
-    priceAndDescriptionContainer.appendChild(category)
+    getElementById('product-category').textContent = product.category
     priceAndDescriptionContainer.appendChild(description);
     productNameAndActionContainer.appendChild(name);
     productNameAndActionContainer.appendChild(threeDots)
@@ -103,10 +103,8 @@ const searchProducts = async () => {
         console.log(parseData[0]._id);
         if (parseData.length > 0) {
             window.location.href = `../product?product_id=${parseData[0]._id}`
-            // `../product?product_id=${parseData._id}`
         }
     }
-
 }
 let searchButton = getElementById('search-btn');
 searchButton.addEventListener('click', searchProducts)
@@ -195,12 +193,18 @@ setInterval(() => {
             // close the container with the edit and delete button
             editAndDeleteContainer.classList.replace('hidden', 'show');
             getElementById('edit-container').classList.add('hidden')
+
+            if (editAndDeleteContainer.classList.contains('show') || !getElementById('edit-container').classList.contains('hidden')) {
+                getElementById('buy-btn').setAttribute('disabled', '')
+            }
         })
     }
 
     // buy the product
     getElementById('buy-btn').addEventListener('click', buyOneProduct)
 }, 1000);
+
+
 
 const updateProduct = async () => {
     let body = {
@@ -236,6 +240,7 @@ const updateProduct = async () => {
 getElementById('action-close').addEventListener('click', () => {
     getElementById('action').classList.replace('show', 'hidden');
     getElementById('delete-prompt').classList.replace('show', 'hidden')
+    getElementById('buy-btn').removeAttribute('disabled', '')
 });
 
 getElementById('edit-btn').addEventListener('click', displayEditContainer)
@@ -261,6 +266,7 @@ getElementById('update-btn').addEventListener('click',
 getElementById('close-btn').addEventListener('click', () => {
     getElementById('update-form').reset()
     getElementById('edit-container').classList.add('hidden')
+    getElementById('buy-btn').removeAttribute('disabled', '')
 })
 
 //Update product
