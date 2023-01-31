@@ -4,18 +4,9 @@
 }
 
 .btn-container,
-body,
 #container,
 #navbar {
     display: flex;
-}
-
-body {
-    align-items: center;
-}
-
-body {
-    flex-direction: column;
 }
 
 #body,
@@ -35,8 +26,14 @@ body {
     margin: auto;
 }
 
+
 #body {
+    top: 10%;
+    padding-top: 10px;
+    position: relative;
     max-width: 1200px;
+    margin: auto;
+    background: white;
 }
 
 .btn-container {
@@ -52,8 +49,8 @@ body {
     box-shadow: 0 0 5px lightgray;
     width: 50%;
     height: max-content;
-    max-width: 400px;
-    min-width: 350px;
+    max-width: 365px;
+    min-width: 85%;
     padding: 10px;
     border-radius: 5px;
     display: flex;

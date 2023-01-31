@@ -65,9 +65,14 @@ getAllProducts()
 
 const searchProducts = async () => {
     let nameSearch = getElementById('name-search').value;
-    let response = await fetch(`/get_products_with_a_specific_word_in_it/${nameSearch}`);
-    let parseData = await response.json();
-    console.log(parseData);
+    if (nameSearch !== '') {
+        let response = await fetch(`/get_products_with_a_specific_word_in_it/${nameSearch}`);
+        let parseData = await response.json();
+        console.log(parseData[0]._id);
+        if (parseData.length > 0) {
+            window.location.href = `../product?product_id=${parseData[0]._id}`
+        }
+    }
 }
 let searchButton = getElementById('search-btn');
 searchButton.addEventListener('click', searchProducts)

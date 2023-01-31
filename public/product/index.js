@@ -21,10 +21,10 @@ const params = new Proxy(new URLSearchParams(window.location.search), {
     get: (searchParams, prop) => searchParams.get(prop),
 });
 
-const getSpecificProductByProductId = async () => {
+const getSpecificProductByProductId = async (id = params.product_id) => {
     // convert the page url to an object
     // Get the value of "some_key" in eg "https://example.com/?some_key=some_value"
-    let productId = params.product_id;
+    let productId = id;
     // const url = new URL(window.location.href);
     // // get the product id
     // const searchParams3 = new URLSearchParams(url.search);
@@ -97,12 +97,16 @@ const getSpecificProductByProductId = async () => {
 
 const searchProducts = async () => {
     let nameSearch = getElementById('name-search').value;
-    let response = await fetch(`/get_products_with_a_specific_word_in_it/${nameSearch}`);
-    let parseData = await response.json();
-    console.log(parseData[0]);
-    if (parseData > 0) {
-        getElementById('product-name').textContent = parseData.name
+    if (nameSearch !== '') {
+        let response = await fetch(`/get_products_with_a_specific_word_in_it/${nameSearch}`);
+        let parseData = await response.json();
+        console.log(parseData[0]._id);
+        if (parseData.length > 0) {
+            window.location.href = `../product?product_id=${parseData[0]._id}`
+            // `../product?product_id=${parseData._id}`
+        }
     }
+
 }
 let searchButton = getElementById('search-btn');
 searchButton.addEventListener('click', searchProducts)
@@ -161,6 +165,26 @@ const displayEditContainer = () => {
     getElementById('delete-prompt').classList.replace('show', 'hidden')
 }
 
+const buyOneProduct = async () => {
+    let response = await fetch(`/get_specific_product/${params.product_id}`)
+    let parseData = await response.json()
+    let newInventory
+    if (Object.keys(parseData).length > 0) {
+        newInventory = parseData.inventory - 1;
+        getElementById('product-inventory').textContent = newInventory + ' remaining'
+    }
+    fetch(`/update_product/?product_id=${params.product_id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ inventory: newInventory })
+    })
+    window.location.href = '../'
+    // let dataParse = await response.json()
+
+}
+
 setInterval(() => {
     let editAndDeleteContainer = getElementById('action')
     let actionButton = getElementById('action-btn');
@@ -175,9 +199,7 @@ setInterval(() => {
     }
 
     // buy the product
-    getElementById('buy-btn').addEventListener('click', () => {
-
-    })
+    getElementById('buy-btn').addEventListener('click', buyOneProduct)
 }, 1000);
 
 const updateProduct = async () => {

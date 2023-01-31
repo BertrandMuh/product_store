@@ -46,6 +46,12 @@ app.put('/update_product', async (req, res) => {
 
 })
 
+app.put('/buy_one_product/', async (req, res) => {
+    let response = await product.findByIdAndUpdate({ _id: req.query.product_id }, { inventory: req.query.new_inventory }, { new: true })
+    console.log(response);
+    console.log(req.query)
+})
+
 app.get('/get_specific_product/:product_id', async (req, res) => {
     let dataId = req.params.product_id;
     let response = await product.findById(dataId)

@@ -3,8 +3,9 @@
     margin: 0;
 }
 
+
+
 .btn-container,
-body,
 #container,
 #navbar,
 #product-container {
@@ -12,7 +13,12 @@ body,
 }
 
 #product-container {
+    min-width: 375px;
+    justify-content: ;
     flex-wrap: wrap;
+    gap: 40px;
+    padding-top: 20px;
+    padding-left: 10px;
 }
 
 #product-container>div {
@@ -20,7 +26,6 @@ body,
     position: relative;
     width: 20%;
     aspect-ratio: 1/1.005;
-    margin: 20px;
     padding: 10px;
 }
 
@@ -38,14 +43,6 @@ body,
     box-shadow: 0 0 4px lightgray;
 }
 
-body {
-    align-items: center;
-}
-
-body {
-    flex-direction: column;
-}
-
 #body,
 .btn-container,
 .img {
@@ -53,7 +50,15 @@ body {
 }
 
 #body {
+    top: 10%;
+    padding-top: 10px;
+    position: absolute;
+    left: 0;
+    right: 0;
     max-width: 1200px;
+    /* height: 100%; */
+    margin: auto;
+    background: white;
 }
 
 .btn-container {
@@ -63,15 +68,12 @@ body {
 
 .product-name {
     text-transform: capitalize;
+    font-size: 25px;
 }
 
 .price,
 .product-name {
     font-weight: bold;
-}
-
-.product-name {
-    font-size: 250%;
 }
 
 .price {
@@ -92,4 +94,68 @@ body {
     font-size: 100%;
     background: lightgrey;
     border-radius: 5px;
+}
+
+@media(max-width: 1200px) {
+    #product-container {
+        padding-left: 2%;
+        gap: 3.5vw;
+        padding-right: 1vw;
+    }
+
+    #product-container>div {
+        width: 19vw;
+    }
+
+    .product-name {
+        font-size: 2.5vw;
+    }
+
+    .price {
+        font-size: 2.3vw
+    }
+}
+
+@media(max-width: 815px) {
+    #body {
+        top: 120px
+    }
+
+    #product-container>div {
+        max-width: 165px;
+        min-width: 100px;
+        /* width: 20vw */
+    }
+
+    #product-container {
+        gap: 2vw
+    }
+}
+
+@media(max-width: 535px) {
+    #product-container>div {
+        max-width: 220px;
+        min-width: 155px;
+        width: 45vw
+    }
+
+    #product-container {
+        gap: 1vw
+    }
+}
+
+@media(max-width: 524px) {
+    #product-container>div {
+        max-width: 220px;
+        min-width: 155px;
+        width: 42.5vw
+    }
+
+    .product-name {
+        font-size: 18px;
+    }
+
+    .price {
+        font-size: 15px
+    }
 }
