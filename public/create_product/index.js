@@ -58,7 +58,6 @@ const createProduct = async () => {
             }, 2000);
         }
     }
-
 }
 
 
