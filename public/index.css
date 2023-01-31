@@ -14,7 +14,7 @@
 
 #product-container {
     min-width: 375px;
-    justify-content: ;
+
     flex-wrap: wrap;
     gap: 40px;
     padding-top: 20px;
@@ -25,13 +25,16 @@
     cursor: pointer;
     position: relative;
     width: 20%;
-    aspect-ratio: 1/1.005;
     padding: 10px;
+}
+
+#product-container>div,
+.img-container {
+    aspect-ratio: 1/1.005;
 }
 
 .img-container {
     width: 90%;
-    aspect-ratio: 1/1.005;
     margin: auto;
 }
 
