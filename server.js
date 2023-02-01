@@ -58,11 +58,7 @@ app.get('/get_specific_product/:product_id', async (req, res) => {
     res.send(response)
 })
 
-app.get('/get_products_with_a_specific_word_in_it/:name', async (req, res) => {
-    let nameStr = req.params.name;
-    let response = await product.find({ name: nameStr })
-    res.send(response)
-})
+
 
 app.listen(5000, () => {
     console.log(`Server is Listening on 5000`)
