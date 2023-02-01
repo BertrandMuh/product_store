@@ -69,11 +69,6 @@ img {
     height: auto;
 }
 
-.btn-container {
-    justify-content: center;
-}
-
-
 .product-name {
     text-transform: capitalize;
     font-size: 25px;
@@ -94,6 +89,7 @@ img {
     position: relative;
     gap: 20px;
     margin: 10px auto;
+    justify-content: center;
 }
 
 .btn-container>* {
