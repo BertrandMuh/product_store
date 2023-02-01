@@ -3,12 +3,14 @@
     margin: 0;
 }
 
-
+body {
+    margin: 0;
+    padding: 0;
+}
 
 .btn-container,
 #container,
-#navbar,
-#product-container {
+#navbar {
     display: flex;
 }
 
@@ -17,19 +19,17 @@ img {
 }
 
 #product-container {
-    min-width: 375px;
-    flex-wrap: wrap;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 260px));
     gap: 40px;
-
-    padding-left: 10px;
-    padding-bottom: 20px;
+    /* padding-bottom: 20px; */
+    width: 98%;
 }
 
 #product-container>div {
     cursor: pointer;
-    position: relative;
-    width: 20%;
-    padding: 10px;
+    width: 100%;
 }
 
 #product-container>div,
@@ -50,7 +50,6 @@ img {
     box-shadow: 0 0 4px lightgray;
 }
 
-#body,
 .btn-container,
 .img {
     width: 100%;
@@ -58,14 +57,16 @@ img {
 
 #body {
     top: 100px;
+    padding-bottom: 40px;
     padding-top: 10px;
     position: absolute;
     left: 0;
     right: 0;
     max-width: 1200px;
-    /* height: 100%; */
+    width: 95%;
+    min-width: 375px;
     margin: auto;
-    background: white;
+    height: auto;
 }
 
 .btn-container {
@@ -81,6 +82,7 @@ img {
 .price,
 .product-name {
     font-weight: bold;
+    margin: 10px;
 }
 
 .price {
@@ -103,15 +105,11 @@ img {
     border-radius: 5px;
 }
 
-@media(max-width: 1200px) {
-    #product-container {
-        padding-left: 2%;
-        gap: 3.5vw;
-        padding-right: 1vw;
-    }
+@media(max-width: 1250px) {
 
-    #product-container>div {
-        width: 19vw;
+    #product-container {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 22%));
+        gap: 3vw;
     }
 
     .product-name {
@@ -125,42 +123,13 @@ img {
 
 @media(max-width: 815px) {
     #body {
-        top: 120px
-    }
-
-    #product-container>div {
-        max-width: 165px;
-        min-width: 100px;
-        /* width: 20vw */
-    }
-
-    #product-container {
-        gap: 2vw
-    }
-}
-
-@media(max-width: 535px) {
-    #product-container>div {
-        max-width: 220px;
-        min-width: 155px;
-        width: 45vw
-    }
-
-    #product-container {
-        gap: 1vw
+        top: 120px;
     }
 }
 
 @media(max-width: 524px) {
-    #product-container>div {
-        max-width: 220px;
-        min-width: 155px;
-        width: 40vw;
-    }
-
-    #body,
-    #main {
-        margin-bottom: 150px;
+    #product-container {
+        grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
     }
 
     .product-name {

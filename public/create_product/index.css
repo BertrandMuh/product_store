@@ -82,4 +82,6 @@ label {
 .create {
     background: lightgreen;
     color: green;
+    width: 100vw;
+    margin-top: 20px;
 }

@@ -55,8 +55,10 @@ const getSpecificProductByProductId = async (id = params.product_id) => {
     price.textContent = '$' + product.price;
     category.innerHTML = product.category;
     buyButton.textContent = 'BUY'
-    inventory.textContent = product.inventory + ' remaining'
-
+    inventory.textContent = product.inventory > 0 ? product.inventory + ' remaining' : "OUT OF STOCK"
+    if (inventory.textContent == "OUT OF STOCK") {
+        inventory.style.color = "red"
+    }
     productNameAndActionContainer.setAttribute('id', 'name-action');
 
     name.setAttribute('class', 'product-name');
@@ -92,7 +94,9 @@ const getSpecificProductByProductId = async (id = params.product_id) => {
     elementContainer.appendChild(inventory)
 
     productContainer.appendChild(elementContainer);
-    productContainer.appendChild(buyButton)
+    if (product.inventory > 0) {
+        productContainer.appendChild(buyButton)
+    }
 }
 
 const searchProducts = async () => {
