@@ -47,14 +47,22 @@ app.put('/update_product', async (req, res) => {
 })
 
 app.put('/buy_one_product/', async (req, res) => {
-    let response = await product.findByIdAndUpdate({ _id: req.query.product_id }, { inventory: req.query.new_inventory }, { new: true })
-    console.log(response);
-    console.log(req.query)
+    product.findByIdAndUpdate({ _id: req.query.product_id }, { inventory: req.query.new_inventory }, { new: true })
 })
 
+app.get('/get_product_by_category', async (req, res) => {
+    console.log('here');
+    let response = await product.find({ category: req.query.category });
+    res.send(response)
+})
 app.get('/get_specific_product/:product_id', async (req, res) => {
     let dataId = req.params.product_id;
     let response = await product.findById(dataId)
+    res.send(response)
+})
+
+app.get('/get_specific_item_by_name/:name', async (req, res) => {
+    let response = await product.find({ name: req.params.name })
     res.send(response)
 })
 

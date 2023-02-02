@@ -102,7 +102,7 @@ const getSpecificProductByProductId = async (id = params.product_id) => {
 const searchProducts = async () => {
     let nameSearch = getElementById('name-search').value;
     if (nameSearch !== '') {
-        let response = await fetch(`/get_products_with_a_specific_word_in_it/${nameSearch}`);
+        let response = await fetch(`/get_specific_item_by_name/${nameSearch}`);
         let parseData = await response.json();
         console.log(parseData[0]._id);
         if (parseData.length > 0) {
@@ -132,12 +132,39 @@ const searchParams3 = new URLSearchParams(url.search);
 let hasProductId = searchParams3.has('product_id');
 
 if (hasProductId) {
-    getSpecificProductByProductId()
+    getElementById('category-container').classList.replace('show2', 'hide')
+    getSpecificProductByProductId();
+
+    console.log('yes');
 }
 else {
-    while (getElementById('container').firstChild) {
-        getElementById('container').removeChild(getElementById('container').firstChild)
-    }
+    getElementById('container').setAttribute('class', 'hidden');
+
+    let categoryContainer = getElementById('category-container');
+    let containerChildren = Array.from(categoryContainer.children);
+    containerChildren.forEach(div => {
+        const getProductByCategory = async () => {
+            let response = await fetch(`/get_product_by_category/?category=${div.id}`)
+            let parseData = await response.json()
+            for (let i = 0; i < parseData.length; i++) {
+                if (i == 4) {
+                    break
+                }
+                if (parseData[i].category == div.id) {
+                    let imgDiv = createElement('div');
+                    let img = createElement('img');
+                    img.src = parseData[i].imageUrl
+                    imgDiv.appendChild(img)
+                    div.appendChild(imgDiv)
+
+                }
+
+            }
+
+        }
+        getProductByCategory()
+        console.log(div.id);
+    })
 }
 
 if (params.alert == 'yes') {
@@ -205,7 +232,9 @@ setInterval(() => {
     }
 
     // buy the product
-    getElementById('buy-btn').addEventListener('click', buyOneProduct)
+    if (getElementById('buy-btn')) {
+        getElementById('buy-btn').addEventListener('click', buyOneProduct)
+    }
 }, 1000);
 
 

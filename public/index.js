@@ -66,7 +66,7 @@ getAllProducts()
 const searchProducts = async () => {
     let nameSearch = getElementById('name-search').value;
     if (nameSearch !== '') {
-        let response = await fetch(`/get_products_with_a_specific_word_in_it/${nameSearch}`);
+        let response = await fetch(`/get_specific_item_by_name/${nameSearch}`);
         let parseData = await response.json();
         console.log(parseData[0]._id);
         if (parseData.length > 0) {
