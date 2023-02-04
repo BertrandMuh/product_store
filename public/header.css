@@ -54,6 +54,34 @@
     margin-right: 5px;
 }
 
+
+.fa.fa-shopping-cart,
+.fa.fa-shopping-cart>sup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fa.fa-shopping-cart {
+    color: white;
+    text-shadow: 2px 2px black;
+    font-size: 22px;
+    width: 40px;
+    height: 35px;
+    position: relative;
+}
+
+.fa.fa-shopping-cart>sup {
+    background: green;
+    padding: 2px;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 14px;
+}
+
+
 #navbar {
     display: flex;
     justify-content: flex-start;

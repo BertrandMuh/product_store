@@ -22,14 +22,7 @@ const params = new Proxy(new URLSearchParams(window.location.search), {
 });
 
 const getSpecificProductByProductId = async (id = params.product_id) => {
-    // convert the page url to an object
-    // Get the value of "some_key" in eg "https://example.com/?some_key=some_value"
     let productId = id;
-    // const url = new URL(window.location.href);
-    // // get the product id
-    // const searchParams3 = new URLSearchParams(url.search);
-    // let productId = searchParams3.get('product_id');
-
     let response = await fetch(`/get_specific_product/${productId}`)
     let product = await response.json()
     let productContainer = getElementById('product-detail');
@@ -104,7 +97,6 @@ const searchProducts = async () => {
     if (nameSearch !== '') {
         let response = await fetch(`/get_specific_item_by_name/${nameSearch}`);
         let parseData = await response.json();
-        console.log(parseData[0]._id);
         if (parseData.length > 0) {
             window.location.href = `../product?product_id=${parseData[0]._id}`
         }
@@ -134,15 +126,13 @@ let hasProductId = searchParams3.has('product_id');
 if (hasProductId) {
     getElementById('category-container').classList.replace('show2', 'hide')
     getSpecificProductByProductId();
-
-    console.log('yes');
 }
 else {
     getElementById('container').setAttribute('class', 'hidden');
-
     let categoryContainer = getElementById('category-container');
     let containerChildren = Array.from(categoryContainer.children);
     containerChildren.forEach(div => {
+        div.category = div.id
         const getProductByCategory = async () => {
             let response = await fetch(`/get_product_by_category/?category=${div.id}`)
             let parseData = await response.json()
@@ -152,18 +142,16 @@ else {
                 }
                 if (parseData[i].category == div.id) {
                     let imgDiv = createElement('div');
+                    imgDiv.category = div.id
                     let img = createElement('img');
+                    img.category = div.id
                     img.src = parseData[i].imageUrl
                     imgDiv.appendChild(img)
                     div.appendChild(imgDiv)
-
                 }
-
             }
-
         }
         getProductByCategory()
-        console.log(div.id);
     })
 }
 
@@ -210,8 +198,6 @@ const buyOneProduct = async () => {
         body: JSON.stringify({ inventory: newInventory })
     })
     window.location.href = '../'
-    // let dataParse = await response.json()
-
 }
 
 setInterval(() => {
@@ -236,8 +222,6 @@ setInterval(() => {
         getElementById('buy-btn').addEventListener('click', buyOneProduct)
     }
 }, 1000);
-
-
 
 const updateProduct = async () => {
     let body = {
@@ -268,6 +252,15 @@ const updateProduct = async () => {
         }
     }
 }
+
+getElementById('category-container').addEventListener('click', async (el) => {
+    let categoryList = ['fruit', 'vegetable', 'meat', 'fish']
+    if (categoryList.includes(el.target.category)) {
+        let response = await fetch('/get_product_by_category/?category=' + el.target.category);
+        let parseData = await response.json();
+        window.location.href = '../?category=' + el.target.category
+    }
+})
 
 // close the container with the edit and delete button
 getElementById('action-close').addEventListener('click', () => {

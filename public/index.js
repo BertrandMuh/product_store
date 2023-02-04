@@ -1,7 +1,9 @@
 
 
-console.log('js connected');
 
+const params = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop),
+});
 
 const getElementById = (id) => {
     return document.getElementById(id)
@@ -21,7 +23,13 @@ const changePage = el => {
 
 const getAllProducts = async () => {
     let productContainer = getElementById('product-container');
-    let response = await fetch('/get_products');
+    let response;
+    if (params.category === null) {
+        response = await fetch('/get_products');
+    }
+    else {
+        response = await fetch('/get_products/?category=' + params.category)
+    }
     let parseData = await response.json()
     parseData.forEach(el => {
         let elementContainer = createElement('div');
@@ -60,6 +68,7 @@ const getAllProducts = async () => {
         elementContainer.appendChild(priceAndDescriptionContainer)
         productContainer.appendChild(elementContainer)
     })
+    // window.location.href = '?category=all'
 }
 getAllProducts()
 

@@ -23,10 +23,15 @@ mongoose.connection.once('open', () => {
 })
 
 app.get('/get_products', async (req, res) => {
-    let response = await product.find({});
-    res.send(response)
+    if (Object.keys(req.query).length == 1) {
+        let response = await product.find(req.query)
+        res.send(response)
+    }
+    else {
+        let response = await product.find({});
+        res.send(response)
+    }
 })
-
 
 app.post('/create_product', async (req, res) => {
     let data = req.body;
@@ -51,7 +56,6 @@ app.put('/buy_one_product/', async (req, res) => {
 })
 
 app.get('/get_product_by_category', async (req, res) => {
-    console.log('here');
     let response = await product.find({ category: req.query.category });
     res.send(response)
 })
