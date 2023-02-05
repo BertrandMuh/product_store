@@ -1,6 +1,5 @@
 const express = require('express')
 const mongoose = require('mongoose');
-const { findOneAndUpdate } = require('./models/product');
 require('dotenv').config()
 const product = require('./models/product')
 
