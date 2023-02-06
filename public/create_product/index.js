@@ -1,4 +1,4 @@
-console.log('js connected');
+// console.log('js connected');
 
 const getElementById = (id) => {
     return document.getElementById(id)

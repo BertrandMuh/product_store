@@ -161,6 +161,7 @@ if (params.alert == 'yes') {
     while (productContainer.firstChild) {
         productContainer.removeChild(productContainer.firstChild)
     }
+    getElementById('category-container').classList.replace('show2', 'hidden')
     let alert = createElement('p');
     alert.setAttribute('class', 'delete alert');
     alert.textContent = 'The product was deleted successfully!'
