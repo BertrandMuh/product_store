@@ -44,6 +44,10 @@
     gap: 5px;
 }
 
+label>sup {
+    color: red
+}
+
 input,
 textarea,
 select {

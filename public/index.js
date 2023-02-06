@@ -68,7 +68,6 @@ const getAllProducts = async () => {
         elementContainer.appendChild(priceAndDescriptionContainer)
         productContainer.appendChild(elementContainer)
     })
-    // window.location.href = '?category=all'
 }
 getAllProducts()
 
@@ -98,5 +97,4 @@ let productContainer = getElementById('product-container');
 productContainer.addEventListener('click', getProductDetail)
 
 const navbar = getElementById('navbar')
-
 navbar.addEventListener('click', changePage)

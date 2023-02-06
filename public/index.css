@@ -3,10 +3,10 @@
     margin: 0;
 }
 
-body {
+/* body {
     margin: 0;
     padding: 0;
-}
+} */
 
 #navbar {
     display: flex;
@@ -101,7 +101,7 @@ img {
 
 @media(max-width: 815px) {
     #body {
-        top: 120px;
+        top: 130px;
     }
 }
 

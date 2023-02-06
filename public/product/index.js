@@ -1,6 +1,6 @@
 
 
-console.log('js connected');
+// console.log('js connected');
 
 const getElementById = (id) => {
     return document.getElementById(id)
@@ -140,7 +140,7 @@ else {
                 if (i == 4) {
                     break
                 }
-                if (parseData[i].category == div.id) {
+                else if (parseData[i].category == div.id) {
                     let imgDiv = createElement('div');
                     imgDiv.category = div.id
                     let img = createElement('img');
@@ -170,9 +170,6 @@ if (params.alert == 'yes') {
         window.location.href = '../'
     }, 2000);
 }
-
-const navbar = getElementById('navbar')
-navbar.addEventListener('click', changePage)
 
 const displayEditContainer = () => {
     let editContainer = getElementById('edit-container')
@@ -253,6 +250,9 @@ const updateProduct = async () => {
     }
 }
 
+const navbar = getElementById('navbar')
+navbar.addEventListener('click', changePage)
+
 getElementById('category-container').addEventListener('click', async (el) => {
     let categoryList = ['fruit', 'vegetable', 'meat', 'fish']
     if (categoryList.includes(el.target.category)) {
@@ -284,8 +284,9 @@ getElementById('n').addEventListener('click', () => {
 
 //delete product after confirmation and hide the confirmation container
 getElementById('y').addEventListener('click', deleteProduct);
-getElementById('update-btn').addEventListener('click',
-    updateProduct);
+
+//update product
+getElementById('update-btn').addEventListener('click', updateProduct);
 
 
 //close the edit container
@@ -295,5 +296,4 @@ getElementById('close-btn').addEventListener('click', () => {
     getElementById('buy-btn').removeAttribute('disabled', '')
 })
 
-//Update product
-getElementById('update-btn').addEventListener('click', updateProduct);
+

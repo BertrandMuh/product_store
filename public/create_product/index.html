@@ -30,23 +30,23 @@
             <form id="create-form">
                 <div>
                     <label for="name">Name<sup>*</sup></label>
-                    <input id="name" type="text" placeholder="name" autocomplete="off">
+                    <input id="name" type="text" placeholder="name" autocomplete="off" required>
                 </div>
                 <div>
                     <label for="img">Product image<sup>*</sup></label>
-                    <input id="img-url" type="url" placeholder="image url here" autocomplete="off">
+                    <input id="img-url" type="url" placeholder="image url here" autocomplete="off" required>
                 </div>
                 <div>
                     <label for="price">Price<sup>*</sup></label>
-                    <input id='price' type="number" step="0.01" placeholder="price" autocomplete="off">
+                    <input id='price' type="number" step="0.01" placeholder="price" autocomplete="off" required>
                 </div>
                 <div>
                     <label for="inventory">Inventory<sup>*</sup></label>
-                    <input id='inventory' type="number" step='1' placeholder="inventory" autocomplete="off">
+                    <input id='inventory' type="number" step='1' placeholder="inventory" autocomplete="off" required>
                 </div>
                 <div>
                     <label for="category">Select product category<sup>*</sup></label>
-                    <select name="category" id="category">
+                    <select name="category" id="category" required>
                         <option value="">Pick one</option>
                         <option value="fruit">Fruit</option>
                         <option value="vegetable">Vegetable</option>
@@ -55,9 +55,9 @@
                     </select>
                 </div>
                 <div>
-                    <label for="description">Product description</label>
+                    <label for="description">Product description<sup>*</sup></label>
                     <textarea name="description" id="description" cols="20" rows="5"
-                        placeholder="Enter the product description"></textarea>
+                        placeholder="Enter the product description" required></textarea>
                 </div>
                 <div>
                     <input id="create-btn" type="submit" value="Create">
