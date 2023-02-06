@@ -19,4 +19,5 @@ So far, the app can be run on Microsoft Edge, Chrome and Firefox
 
 # Demo
 For more explanation and demonstration about the site, please visit the YouTube link below:
-[Video presentation]({https://www.youtube.com/watch?v=V86sPfRGgys} "Link Title")
+
+Click the following link to watch the video presentation of the project => [Video presentation](https://www.youtube.com/watch?v=V86sPfRGgys)
