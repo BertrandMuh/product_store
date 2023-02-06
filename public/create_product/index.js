@@ -15,9 +15,9 @@ const changePage = el => {
     }
 }
 
-const params = new Proxy(new URLSearchParams(window.location.search), {
-    get: (searchParams, prop) => searchParams.get(prop),
-});
+// const params = new Proxy(new URLSearchParams(window.location.search), {
+//     get: (searchParams, prop) => searchParams.get(prop),
+// });
 
 const createProduct = async () => {
     let name = getElementById('name').value
@@ -35,7 +35,7 @@ const createProduct = async () => {
         category,
         description
     }
-    if (name != '' && price != 0 && imageUrl != '' && inventory != 0 && category != '') {
+    if (name != '' && price != 0 && imageUrl != '' && inventory != 0 && category != '' && description != '') {
         let response = await fetch('/create_product', {
             method: "POST",
             headers: {

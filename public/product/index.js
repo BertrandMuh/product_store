@@ -257,8 +257,8 @@ navbar.addEventListener('click', changePage)
 getElementById('category-container').addEventListener('click', async (el) => {
     let categoryList = ['fruit', 'vegetable', 'meat', 'fish']
     if (categoryList.includes(el.target.category)) {
-        let response = await fetch('/get_product_by_category/?category=' + el.target.category);
-        let parseData = await response.json();
+        // let response = await fetch('/get_product_by_category/?category=' + el.target.category);
+        // let parseData = await response.json();
         window.location.href = '../?category=' + el.target.category
     }
 })

@@ -76,7 +76,6 @@ const searchProducts = async () => {
     if (nameSearch !== '') {
         let response = await fetch(`/get_specific_item_by_name/${nameSearch}`);
         let parseData = await response.json();
-        console.log(parseData[0]._id);
         if (parseData.length > 0) {
             window.location.href = `../product?product_id=${parseData[0]._id}`
         }
